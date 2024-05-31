@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+
+    <style>
+
+        body {
+            background-color: wheat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 800px;
+            font-family: 'Times New Roman', 'sans-serif';
+        }
+
+        .Calculator {
+            background-color: blanchedalmond;
+            border-radius: 50px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            width: 370px;
+            border: 1px solid black;
+        }
+
+        #result {
+            font-size: 40px;
+            padding: 40px;
+            margin: 10px 10px 10px 5px;
+            width: 361px;
+            text-align: right;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        .num-erase, .num-btn {
+            padding: 20px;
+            margin: 5px;
+            font-size: 25px;
+            border-radius: 10px;
+            border: 1px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+        }
+
+        .num-erase {
+            width: 173px;
+        }
+
+        .num-btn {
+            width: 78px; 
+            height: 75px;
+            margin: 5.7px;
+            margin-bottom: 10px;
+        }
+
+        .num-btn:hover, .num-erase:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1 {
+            background-color: wheat;
+            padding: 10px;
+            text-align: center;
+            width: 100%; 
+            font-weight: 600;
+        }
+
+        @media only screen and (min-width: 1024px) {
+            body{
+                background-color: powderblue;
+            }
+            h1{
+                background-color: powderblue;
+            }
+
+        }
+
+
+        @media only screen and (min-width:768px) and (max-width: 1023px) {
+            body{
+                background-color: skyblue;
+            }
+            h1{
+                background-color: skyblue;
+            }
+        }
+        
+        @media only screen and (max-width: 767px) {
+            body{
+                background-color:aliceblue;
+            }
+            h1{
+                background-color: aliceblue;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>Calculator App</h1>
+    <div class="Calculator">
+        <input type="text" id="result">
+
+        <input type="button" value="C" class="num-erase" onclick="clearInput()">
+        <input type="button" value="Del" class="num-erase" onclick="delInput()">
+
+        <input type="button" value="7" class="num-btn" onclick="appendNum(7)">
+        <input type="button" value="8" class="num-btn" onclick="appendNum(8)">
+        <input type="button" value="9" class="num-btn" onclick="appendNum(9)">
+        <input type="button" value="+" class="num-btn" onclick="add()"><br>
+
+        <input type="button" value="4" class="num-btn" onclick="appendNum(4)">
+        <input type="button" value="5" class="num-btn" onclick="appendNum(5)">
+        <input type="button" value="6" class="num-btn" onclick="appendNum(6)">
+        <input type="button" value="*" class="num-btn" onclick="multiply()"><br>
+
+        <input type="button" value="1" class="num-btn" onclick="appendNum(1)">
+        <input type="button" value="2" class="num-btn" onclick="appendNum(2)">
+        <input type="button" value="3" class="num-btn" onclick="appendNum(3)">
+        <input type="button" value="-" class="num-btn" onclick="minus()"><br>
+
+        <input type="button" value="/" class="num-btn" onclick="divide()">
+        <input type="button" value="0" class="num-btn" onclick="appendNum(0)">
+        <input type="button" value="." class="num-btn" onclick="appendNum('.')">
+        <input type="button" value="=" class="num-btn" onclick="calculate()"><br>
+    </div>
+    
+    <script>
+
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNum(number) {
+            currentInput += number;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function minus() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById("result").value = result;
+            currentOperator = '';
+            currentInput = result.toString();
+        }
+
+        function clearInput() {
+            currentOperator = '';
+            currentInput = '';
+            document.getElementById("result").value = '';
+        }
+
+        function delInput() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById("result").value = currentInput;
+        }
+    </script>
+</body>
+</html>
